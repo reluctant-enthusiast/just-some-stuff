@@ -1,0 +1,41 @@
+openapi: 3.1.0
+info:
+title: Notion Tasks Bridge
+version: 1.0.0
+servers:
+	•	url: https://hook.us2.make.com/e7ipmkp1ogaql5kfmlfy85zebyalt44o
+paths:
+/:
+post:
+operationId: handleTask
+description: Mark a Notion task done or create a new task via Make webhook.
+requestBody:
+required: true
+content:
+application/json:
+schema:
+type: object
+properties:
+action:
+type: string
+enum: [mark_done, create_task]
+name:
+type: string
+description: Required task name or title
+due:
+type: string
+description: ISO date YYYY-MM-DD
+priority:
+type: string
+category:
+type: string
+effort_hrs:
+type: number
+next_step:
+type: string
+notes:
+type: string
+required: [action, name]
+responses:
+"200":
+description: OK
