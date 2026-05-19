@@ -3,82 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
+    <title>Michael Levin</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; }
-        .container { width: 300px; margin: 0 auto; background: white; padding: 20px; border-radius: 5px; }
-        #task-input { width: calc(100% - 22px); padding: 10px; }
-        #add-button { padding: 10px; }
-        ul { list-style-type: none; padding: 0; }
-        li { padding: 10px; border-bottom: 1px solid #ddd; }
-        .completed { text-decoration: line-through; color: gray; }
+        :root {
+            --fg: #1a1a1a;
+            --muted: #666;
+            --bg: #fafafa;
+            --accent: #0366d6;
+            --border: #e1e4e8;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            margin: 0;
+            line-height: 1.6;
+        }
+        main {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+        h1 {
+            font-size: 2rem;
+            margin: 0 0 0.5rem;
+        }
+        h2 {
+            font-size: 1.1rem;
+            margin: 2.5rem 0 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+        p { margin: 0 0 1rem; }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li { margin: 0.4rem 0; }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        a:hover { text-decoration: underline; }
+        .links a {
+            display: inline-block;
+            margin-right: 1rem;
+        }
+        footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>To-Do List</h2>
-        <input type="text" id="task-input" placeholder="Add a new task..."><button id="add-button">Add</button>
-        <ul id="task-list"></ul>
-    </div>
-    <script>
-        // Retrieve tasks from local storage
-        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        const taskList = document.getElementById('task-list');
-        const taskInput = document.getElementById('task-input');
-        const addButton = document.getElementById('add-button');
+    <main>
+        <h1>Michael Levin</h1>
+        <p>Hi, I'm Michael Levin. Welcome to my website.</p>
 
-        // Function to render tasks
-        function renderTasks() {
-            taskList.innerHTML = '';
-            tasks.forEach((task, index) => {
-                const li = document.createElement('li');
-                li.textContent = task.text;
-                li.className = task.completed ? 'completed' : '';
-                li.addEventListener('click', () => toggleTask(index));
-                taskList.appendChild(li);
+        <h2>Links</h2>
+        <ul class="links">
+            <li><a href="https://www.linkedin.com/in/mvlevin">LinkedIn</a></li>
+            <li><a href="https://www.github.com/reluctant-enthusiast">GitHub</a></li>
+        </ul>
 
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    deleteTask(index);
-                });
-                li.appendChild(deleteButton);
-            });
-        }
+        <h2>Files</h2>
+        <p>Nothing here yet.</p>
 
-        // Function to add a task
-        function addTask() {
-            const text = taskInput.value;
-            if (text) {
-                tasks.push({ text, completed: false });
-                saveTasks();
-                taskInput.value = '';
-                renderTasks();
-            }
-        }
-
-        // Function to toggle task completion
-        function toggleTask(index) {
-            tasks[index].completed = !tasks[index].completed;
-            saveTasks();
-            renderTasks();
-        }
-
-        // Function to delete a task
-        function deleteTask(index) {
-            tasks.splice(index, 1);
-            saveTasks();
-            renderTasks();
-        }
-
-        // Function to save tasks to local storage
-        function saveTasks() {
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-        }
-
-        addButton.addEventListener('click', addTask);
-        renderTasks();
-    </script>
+        <footer>
+            &copy; Michael Levin
+        </footer>
+    </main>
 </body>
 </html>
