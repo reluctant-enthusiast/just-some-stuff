@@ -3,7 +3,7 @@
   const root = document.querySelector('#app');
   const parts = [
     './app.part.00a', './app.part.00b', './app.part.01', './app.part.02', './app.part.03',
-    './app.part.04a', './app.part.04b', './app.part.04c',
+    './app.part.04a', './app.part.04b', './app.part.04c0', './app.part.04c1', './app.part.04c2', './app.part.04c3',
     './app.part.05a', './app.part.05b', './app.part.05c'
   ];
   const fail = (error) => {
