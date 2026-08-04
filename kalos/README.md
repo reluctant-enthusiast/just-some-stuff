@@ -30,6 +30,19 @@ The Age-Eight opening now spans five anchor sequences:
 4. **The Eighth Hook** — the original damaged-hook incident, now conditioned by earlier conduct.
 5. **The Work Nobody Saw** — a substantial, branch-responsive aftermath in which confession, repair, concealment, and social reward separate.
 
+## Binding literary canon
+
+The approved prose, focalization, dialogue, interaction, scene-architecture, and Age Eight Arc II standards are consolidated in [`docs/literary-prose-constitution.md`](docs/literary-prose-constitution.md).
+
+That document is binding editorial canon for the Age Eight phase and the presumptive baseline for later phases. It requires, among other things:
+
+- lexically mature but child-bounded focalization;
+- delayed interpretation rather than immediate thematic explanation;
+- longer, inhabited scenes with autonomous NPC action;
+- restrained player interaction through attention, belief, action, narrative focus, memory, and occasional lingering;
+- equal prose care for prevention, ordinary pleasure, and quiet outcomes;
+- revised Arc II order: Low Water, The Sweet Oil, The Borrowed Bed, Words Through the Wall, The Cave at Half Tide or tide-pool route, and What Stayed.
+
 ## Optional LLM bridge
 
 The offline interpreter remains authoritative by default. A later provider may register `globalThis.KALOS_LLM_INTERPRETER` and return either:
