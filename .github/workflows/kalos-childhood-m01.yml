@@ -1,0 +1,40 @@
+name: Kalos childhood milestones 0-1
+
+on:
+  push:
+    branches:
+      - kalos/milestones-0-1-v2
+  pull_request:
+    paths:
+      - 'kalos/childhood-v0-2/**'
+      - '.github/workflows/kalos-childhood-m01.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: JavaScript syntax
+        run: |
+          node --check kalos/childhood-v0-2/dist/content.js
+          node --check kalos/childhood-v0-2/dist/engine.js
+          node --check kalos/childhood-v0-2/dist/app.js
+      - name: Runtime engine tests
+        working-directory: kalos/childhood-v0-2
+        run: node --test tests/*.test.mjs
+      - name: Static asset references
+        run: |
+          test -f kalos/childhood-v0-2/index.html
+          test -f kalos/childhood-v0-2/styles.css
+          grep -q './dist/app.js' kalos/childhood-v0-2/index.html
+          grep -q './engine.js' kalos/childhood-v0-2/dist/app.js
+      - name: Guard against remote runtime dependencies
+        run: |
+          ! grep -RIE 'https?://(cdn|unpkg|jsdelivr|esm\.sh)' kalos/childhood-v0-2/index.html kalos/childhood-v0-2/dist kalos/childhood-v0-2/styles.css
