@@ -1,16 +1,99 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#081713">
-  <title>Kalos — The Hidden Hook (Legacy v1)</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Kalos — Before the Tide</title>
+<style>
+:root{
+  --bg:#07110f;--panel:#0d1b18;--panel2:#11231f;--ink:#f4efe5;--muted:#bcb8ae;
+  --line:rgba(235,239,230,.16);--gold:#e1c28d;--moss:#7fa18e;--ember:#c8795d;
+  --serif:Georgia,'Times New Roman',serif;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box}html{background:var(--bg);-webkit-text-size-adjust:100%}body{margin:0;background:radial-gradient(circle at 70% 0%,#12302a 0,transparent 34%),linear-gradient(#081410,#07110f 65%);color:var(--ink);font:17px/1.72 var(--serif);min-height:100vh}
+button,input,textarea{font:inherit}button{touch-action:manipulation}.shell{width:min(1100px,100%);margin:auto;padding:max(18px,env(safe-area-inset-top)) 14px calc(42px + env(safe-area-inset-bottom))}
+.hero{min-height:340px;border:1px solid var(--line);border-radius:26px;overflow:hidden;position:relative;background:
+linear-gradient(180deg,rgba(0,0,0,.05),rgba(4,11,10,.78)),
+radial-gradient(ellipse at 18% 55%,rgba(213,227,216,.20),transparent 35%),
+linear-gradient(150deg,#2c4b43 0%,#142b27 48%,#091512 100%)}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 0 58%,rgba(4,10,9,.42) 58% 100%)}
+.hero-copy{position:absolute;left:clamp(22px,6vw,70px);right:22px;bottom:34px;max-width:700px}.kicker{font:700 12px/1.2 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#d4d8cd}.hero h1{font-weight:500;font-size:clamp(48px,10vw,92px);letter-spacing:-.045em;line-height:.9;margin:.22em 0 .32em}.hero p{margin:0;font-size:clamp(18px,3.8vw,25px);line-height:1.45;color:#e3dfd6;max-width:44ch}
+.toolbar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}.tool{min-height:56px;border:1px solid var(--line);border-radius:17px;background:rgba(12,26,23,.88);color:var(--ink);font:700 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:8px;cursor:pointer}.tool span{display:block;font-size:19px;margin-bottom:2px}.tool:active{background:#19312b}
+.reader{border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,rgba(15,31,27,.97),rgba(8,18,16,.99));overflow:hidden}.reader-inner{padding:clamp(24px,5vw,60px)}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}.chip{border:1px solid var(--line);border-radius:999px;padding:6px 11px;font:14px var(--sans);color:var(--muted)}.story{max-width:68ch}.story p{margin:0 0 1.12em}.drop:first-letter{float:left;color:var(--gold);font-size:4.1rem;line-height:.78;margin:.12em .1em 0 0}.dialogue{margin:1.25em 0;padding-left:18px;border-left:2px solid rgba(225,194,141,.55)}.speaker{font:700 11px var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:4px}.beat-title{margin:2.2em 0 .9em;font:700 11px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--moss);display:flex;gap:12px;align-items:center}.beat-title:after{content:"";height:1px;background:var(--line);flex:1}
+.choice-zone{border-top:1px solid var(--line);margin-top:28px;padding-top:25px}.choice-zone h2{font-weight:500;font-size:clamp(26px,5vw,40px);line-height:1.08;margin:0 0 15px}.choice{display:block;width:100%;text-align:left;color:var(--ink);background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:17px;padding:16px;margin:10px 0;cursor:pointer;font:600 16px/1.45 var(--sans)}.choice:active{border-color:var(--gold);background:rgba(225,194,141,.08)}.axes{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.axis{font:700 10px var(--sans);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:4px 7px;color:#b9c3bd}
+textarea{width:100%;min-height:96px;border:1px solid var(--line);border-radius:14px;background:#07110f;color:var(--ink);font:16px/1.5 var(--sans);padding:13px;margin-top:10px}.submit{margin-top:10px;border:0;border-radius:999px;background:var(--gold);color:#21180c;padding:12px 18px;font:750 14px var(--sans);min-height:46px}
+.panel{display:none;margin:12px 0;border:1px solid var(--line);border-radius:18px;background:#10231f;padding:18px}.panel.open{display:block}.panel h3{font:500 27px var(--serif);margin:0 0 10px}.panel p,.panel li{font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--muted)}
+.app{display:none}.js-ready .app{display:block}.js-ready .fallback{display:none}.status{margin-top:18px;border:1px solid rgba(225,194,141,.25);border-radius:18px;padding:18px;background:rgba(225,194,141,.055)}.status h3{margin:0 0 8px;font-weight:500;font-size:27px}.status p{margin:.55em 0}.restart{border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);padding:10px 14px;font:650 13px var(--sans)}
+.preview-note{border:1px solid rgba(225,194,141,.28);background:rgba(225,194,141,.06);border-radius:18px;padding:15px;margin-bottom:18px;font:14px/1.5 var(--sans);color:#ddd1bd}.fallback details{border:1px solid var(--line);border-radius:17px;margin:10px 0;background:rgba(255,255,255,.02);overflow:hidden}.fallback summary{cursor:pointer;padding:16px;font:650 16px/1.4 var(--sans);list-style:none}.fallback summary::-webkit-details-marker{display:none}.fallback summary:after{content:"＋";float:right;color:var(--gold)}.fallback details[open] summary:after{content:"−"}.fallback .branch{padding:0 16px 18px;color:#ddd8cf}.fallback .branch p{margin:.8em 0}.fallback .branch strong{color:var(--gold)}
+@media(min-width:850px){.shell{padding-left:28px;padding-right:28px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 76px;gap:14px}.toolbar{display:flex;flex-direction:column;margin:0;position:sticky;top:18px}.tool{width:64px;height:64px}.reader-inner{padding-right:80px}.hero{min-height:500px}}
+@media(max-width:520px){body{font-size:16px}.shell{padding-left:8px;padding-right:8px}.hero{border-radius:0;margin-left:-8px;margin-right:-8px;min-height:370px}.hero-copy{left:22px;bottom:27px}.hero h1{font-size:56px}.toolbar{position:sticky;top:6px;z-index:20;background:rgba(7,17,15,.94);backdrop-filter:blur(16px);padding:7px;border:1px solid var(--line);border-radius:19px}.tool{min-width:0;padding:6px 3px}.reader{border-radius:21px}.reader-inner{padding:27px 20px 44px}.choice{min-height:52px}.panel{padding:16px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
 </head>
-<body style="margin:0;background:#07120f;color:#f3eee3;font-family:Georgia,serif;padding:32px;line-height:1.6">
-  <main style="max-width:760px;margin:auto">
-    <h1>Legacy Kalos prototype</h1>
-    <p>This page preserves the original hosted proof of concept before the Milestones 0–1 rebuild.</p>
-    <p><a href="./index.html" style="color:#d7b47a">Open the current Kalos build</a></p>
-  </main>
+<body>
+<div class="shell">
+  <header class="hero">
+    <div class="hero-copy">
+      <div class="kicker">Late summer · East inlet</div>
+      <h1>Before the tide</h1>
+      <p>A small unfinished task. Older children calling from the shore. Enough time, Kalos thinks, for both.</p>
+    </div>
+  </header>
+
+  <div class="layout">
+    <main class="reader">
+      <div class="reader-inner">
+        <div class="chips"><span class="chip">Early morning</span><span class="chip">Drying yard</span><span class="chip">The tide is going</span></div>
+
+        <section class="fallback" aria-label="Preview-safe story">
+          <div class="preview-note"><strong>Preview-safe mode.</strong> This version remains readable and tappable even when the iPhone attachment viewer blocks JavaScript. Expand a decision below. Open the file in Safari for the full stateful version.</div>
+          <article class="story">
+            <div class="beat-title">Yesterday</div>
+            <p class="drop">The eighth hook lay between Kalos’s knees while the voices from the shore came and went with the wind. Seven bindings sat neat in the tray. The last needed six turns of wet fiber, pulled flat with the thumbnail, and then a knot Mara would test by trying to tear it apart.</p>
+            <p>Oren called again. This time the older children laughed before Kalos had answered, already leaving space for him inside the joke.</p>
+            <p>He gave the fiber two turns, pulled once, and decided that a thing which held now would probably hold later.</p>
+            <div class="dialogue"><span class="speaker">Mara</span>“All eight?”</div>
+            <p>“All eight,” Kalos said, without looking at her.</p>
+
+            <div class="beat-title">This morning</div>
+            <p>The hook lay in Kalos’s palm with a small twist in it, as though the bone had tried to turn away from what had happened. Mara stood over Neri. Around them, the fishing party waited with the bad patience of adults losing tide.</p>
+            <div class="dialogue"><span class="speaker">Mara</span>“Neri, you will stay and rebind the tray unless someone has something useful to say.”</div>
+            <p>Neri looked at Kalos. Not pleading. That would have been easier. Only looking.</p>
+
+            <div class="choice-zone">
+              <h2>What does Kalos change?</h2>
+              <details><summary>Put the hook down and admit the binding was his.</summary><div class="branch"><p><strong>Public cost, clean truth.</strong> Neri is released. The canoe leaves without Kalos. Mara sits him inside the work shed with six fresh hooks and no praise.</p><p>“Why did you tell me it was done?” she asks.</p><p>Kalos says he wanted to go when the others called. Mara separates the fiber. “Then next time say which thing you are choosing.”</p><p>Months later, when Kalos slips on wet stone, Neri catches his wrist. Neither boy mentions the tray.</p></div></details>
+              <details><summary>Ask Mara to test the other hooks before blaming anyone.</summary><div class="branch"><p><strong>Evidence before ownership.</strong> Two more bindings begin to slip. Neri is cleared, but he watches Kalos wait until the truth has nearly found him by itself.</p><p>Mara asks who bound the tray. Kalos may still confess, admit only that he hurried, or let her complete the answer.</p><p>For years, Mara no longer asks whether his work is finished. She asks to see it.</p></div></details>
+              <details><summary>Make the room laugh at Oren’s unfinished basket.</summary><div class="branch"><p><strong>The accusation weakens; the burden remains.</strong> Adults laugh. Oren’s certainty collapses. Mara sends him back to his own work—but Neri still stays behind to repair the tray.</p><p>Behind the shed, Neri says, “You tied it.” Kalos can confess, bargain for silence, repair the hooks without speaking, or return to the beach.</p><p>If Kalos jokes again, Neri may laugh despite himself and trust him less.</p></div></details>
+              <details><summary>Say nothing and let Mara decide.</summary><div class="branch"><p><strong>Immediate reward, displaced cost.</strong> Kalos reaches the shore in time to become the center of the older children’s morning. Neri remains behind.</p><p>By winter, the story says Neri dropped the tray. By spring, it says he broke three hooks. Oren tells it best after Kalos teaches him where the laugh belongs.</p><p>Neri stops offering Kalos the larger half of anything.</p></div></details>
+            </div>
+          </article>
+        </section>
+
+        <section class="app" aria-label="Interactive story"><article id="story" class="story"></article><section id="choices" class="choice-zone"></section><section id="ending" class="status" hidden></section></section>
+      </div>
+    </main>
+    <nav class="toolbar" aria-label="Story context"><button class="tool" data-panel="people"><span>◉</span>People</button><button class="tool" data-panel="memory"><span>⌁</span>Memory</button><button class="tool" data-panel="thread"><span>✦</span>Thread</button><button class="tool" data-panel="more"><span>•••</span>More</button></nav>
+  </div>
+  <section id="people" class="panel"><h3>People</h3><p><strong>Mara</strong> oversees fishing gear. Economical, observant, difficult to distract.</p><p><strong>Neri</strong> is serious, low in household standing, and slow to forget who allowed him to be blamed.</p><p><strong>Oren</strong> is older, confident, and alert to any chance to appear useful.</p></section>
+  <section id="memory" class="panel"><h3>Memory</h3><ul><li>Mara asked whether all eight hooks were finished.</li><li>Kalos answered yes without looking.</li><li>Neri once gave him the larger half of a roasted root.</li></ul></section>
+  <section id="thread" class="panel"><h3>Thread</h3><p>The objective truth, public account, and private memory may diverge. Later chapters will inherit whichever version survives this morning.</p></section>
+  <section id="more" class="panel"><h3>More</h3><p>Interactive mode stores choices only in this page session. No data leaves the device.</p><button id="restart" class="restart">Restart chapter</button></section>
+</div>
+<script>
+(function(){
+  const state={step:0,route:[],beliefs:{mara:'uncertain',neri:'suspicious',oren:'blames Neri'},truth:'Kalos hurried the binding and lied about finishing it'};
+  const story=document.getElementById('story'), choices=document.getElementById('choices'), ending=document.getElementById('ending');
+  const opening=`<div class="beat-title">Yesterday</div><p class="drop">The eighth hook lay between Kalos’s knees while the voices from the shore came and went with the wind. Seven bindings sat neat in the tray. The last needed six turns of wet fiber and a knot Mara would test by trying to tear apart.</p><p>Oren called again. The older children laughed before Kalos answered, already leaving space for him inside the joke.</p><p>He gave the fiber two turns, pulled once, and decided that a thing which held now would probably hold later.</p><div class="dialogue"><span class="speaker">Mara</span>“All eight?”</div><p>“All eight,” Kalos said, without looking at her.</p><div class="beat-title">This morning</div><p>The hook lay in Kalos’s palm with a small twist in it. Mara stood over Neri. The fishing party waited with the bad patience of adults losing tide.</p><div class="dialogue"><span class="speaker">Mara</span>“Neri, you will stay and rebind the tray unless someone has something useful to say.”</div><p>Neri looked at Kalos. Not pleading. That would have been easier. Only looking.</p>`;
+  const major=[{id:'confess',text:'Put the hook down and say the binding was his.',axes:['public','reveal','cost now']},{id:'test',text:'Ask Mara to test the other hooks before blaming anyone.',axes:['procedural','delay','protect Neri']},{id:'humor',text:'Turn the room against Oren and his unfinished basket.',axes:['public','conceal','social force']},{id:'silence',text:'Lower his eyes and let Mara decide.',axes:['private','conceal','cost later']}];
+  const outcomes={confess:{title:'The work shed',html:`<p>Mara looks at Kalos rather than the hook. “You finished all eight,” she says.</p><p>“I said I did.”</p><p>“And?”</p><p>“I had not.”</p><p>The canoe leaves without him. Inside the shed Mara places six fresh hooks between them. She does not praise him. She gives him more work.</p>`,memory:'Mara did not forgive him by making the feeling go away. She gave him more hooks.'},test:{title:'The testing mat',html:`<p>Mara pulls at the remaining bindings. The third slips. The fourth loosens beneath her thumb.</p><p>“These were not dropped,” she says.</p><p>Neri looks at Kalos again. Suspicion has found a place to stand.</p>`,memory:'Kalos learned that truth could be delayed without being entirely escaped.'},humor:{title:'The laugh',html:`<p>“Perhaps the hook climbed out to finish Oren’s basket,” Kalos says. Adults laugh first. Then the children.</p><p>Oren flushes. His accusation weakens. Neri still remains behind with the tray.</p><p>Later, behind the shed, Neri says, “You tied it.”</p>`,memory:'Kalos learned that he could make a wrong moment easier without making it fair.'},silence:{title:'The shore',html:`<p>Kalos says nothing. Mara sends Neri to the work shed.</p><p>At the shore Kalos becomes the center of the older children’s morning. The reward is immediate and real.</p><p>By winter, the story says Neri dropped the tray.</p>`,memory:'Neri stopped offering Kalos the larger half of anything.'}};
+  function renderChoices(){choices.innerHTML=`<h2>What does Kalos change?</h2>${major.map(c=>`<button class="choice" data-choice="${c.id}">${c.text}<span class="axes">${c.axes.map(a=>`<span class="axis">${a}</span>`).join('')}</span></button>`).join('')}<textarea id="free" placeholder="Or describe what Kalos tries to do…"></textarea><button id="submitFree" class="submit">Attempt it</button>`;choices.querySelectorAll('[data-choice]').forEach(b=>b.addEventListener('click',()=>resolve(b.dataset.choice)));document.getElementById('submitFree').addEventListener('click',()=>{const v=document.getElementById('free').value.toLowerCase();if(/confess|admit|truth|my fault/.test(v))resolve('confess');else if(/test|inspect|check|evidence/.test(v))resolve('test');else if(/joke|laugh|oren|basket/.test(v))resolve('humor');else if(/silent|nothing|leave|shore|walk away/.test(v))resolve('silence');else{document.getElementById('free').value='';document.getElementById('free').placeholder='Be more specific: confess, test the hooks, redirect the room, or remain silent.'}})}
+  function resolve(id){state.route.push(id);const o=outcomes[id];story.insertAdjacentHTML('beforeend',`<div class="beat-title">${o.title}</div>${o.html}`);choices.innerHTML='';ending.hidden=false;ending.innerHTML=`<h3>What remains</h3><p>${o.memory}</p><p><strong>Objective truth:</strong> ${state.truth}</p><button class="restart" id="again">Play another path</button>`;document.getElementById('again').addEventListener('click',start);ending.scrollIntoView({behavior:'smooth',block:'start'})}
+  function start(){story.innerHTML=opening;ending.hidden=true;ending.innerHTML='';renderChoices();story.scrollIntoView({block:'start'})}
+  document.querySelectorAll('.tool').forEach(btn=>btn.addEventListener('click',()=>{const panel=document.getElementById(btn.dataset.panel),open=panel.classList.contains('open');document.querySelectorAll('.panel').forEach(p=>p.classList.remove('open'));if(!open){panel.classList.add('open');panel.scrollIntoView({behavior:'smooth',block:'nearest'})}}));
+  document.getElementById('restart').addEventListener('click',start);document.documentElement.classList.add('js-ready');start();
+})();
+</script>
 </body>
 </html>
