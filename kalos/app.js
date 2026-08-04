@@ -1,6 +1,15 @@
 (() => {
   'use strict';
   const root = document.querySelector('#app');
+  const parts = [
+    './app.part.00',
+    './app.part.01',
+    './app.part.02',
+    './app.part.03',
+    './app.part.04',
+    './app.part.05'
+  ];
+
   const showFailure = (error) => {
     console.error(error);
     if (!root) return;
@@ -18,9 +27,12 @@
       if (typeof DecompressionStream !== 'function') {
         throw new Error('This browser does not provide the required gzip decompression support.');
       }
-      const response = await fetch('./app.js.gz.b64', { cache: 'no-store' });
-      if (!response.ok) throw new Error(`Could not load the narrative engine (${response.status}).`);
-      const encoded = (await response.text()).replace(/\s+/g, '');
+      const responses = await Promise.all(parts.map((url) => fetch(url, { cache: 'no-store' })));
+      const failed = responses.find((response) => !response.ok);
+      if (failed) throw new Error(`Could not load the narrative engine (${failed.status}).`);
+      const encoded = (await Promise.all(responses.map((response) => response.text())))
+        .join('')
+        .replace(/\s+/g, '');
       const binary = atob(encoded);
       const bytes = new Uint8Array(binary.length);
       for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
