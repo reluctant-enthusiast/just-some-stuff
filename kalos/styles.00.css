@@ -1,0 +1,80 @@
+:root {
+  color-scheme: dark;
+  --ink: #f4efe4;
+  --ink-soft: #d7d6cc;
+  --muted: #aeb9b2;
+  --bg: #06110e;
+  --bg-raised: #0b1b17;
+  --panel: #0e211b;
+  --panel-2: #132921;
+  --line: #314840;
+  --line-strong: #526a61;
+  --cedar: #d4af73;
+  --cedar-soft: #b9915b;
+  --sea: #8eafa2;
+  --ember: #c77852;
+  --danger: #c57b68;
+  --shadow: 0 26px 90px rgba(0, 0, 0, .38);
+  --serif: Georgia, 'Times New Roman', Times, serif;
+  --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--bg); scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; min-height: 100%; overflow-x: hidden; background: var(--bg); color: var(--ink); }
+body.sheet-open { overflow: hidden; }
+button, input, textarea { font: inherit; }
+button { color: inherit; cursor: pointer; }
+button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--cedar); outline-offset: 3px; }
+img { max-width: 100%; }
+
+.boot {
+  min-height: 100svh;
+  display: grid;
+  place-content: center;
+  gap: 14px;
+  text-align: center;
+  background: radial-gradient(circle at 50% 38%, #18392f, #06110e 62%);
+}
+.boot-mark {
+  width: 68px; height: 68px; margin: auto; border: 1px solid var(--line-strong); border-radius: 50%;
+  display: grid; place-content: center; font-family: var(--serif); font-size: 2.1rem; color: var(--cedar);
+}
+.boot p { color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-size: .78rem; }
+
+.app-shell { min-height: 100svh; display: grid; grid-template-columns: minmax(380px, 46vw) minmax(0, 1fr); background: var(--bg); }
+
+.visual-pane {
+  --scene-art: none;
+  --scene-brightness: .82;
+  --scene-saturation: .82;
+  --scene-warmth: 0deg;
+  --scene-vignette: .5;
+  --scene-overlay: linear-gradient(180deg, transparent, rgba(2, 9, 7, .8));
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  border-right: 1px solid rgba(146, 171, 160, .19);
+  background: #07120f;
+}
+.visual-art {
+  position: absolute; inset: -2%; z-index: -4;
+  background-image: var(--scene-art);
+  background-size: cover;
+  background-position: center;
+  filter: brightness(var(--scene-brightness)) saturate(var(--scene-saturation)) hue-rotate(var(--scene-warmth));
+  transform: scale(1.035);
+  transition: background-image .45s ease, filter .45s ease, transform 8s ease;
+}
+.visual-pane:hover .visual-art { transform: scale(1.055); }
+.visual-overlay { position: absolute; inset: 0; z-index: -3; background: var(--scene-overlay); }
+.visual-overlay::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(1, 7, 6, calc(var(--scene-vignette) * .72)) 100%);
+}
