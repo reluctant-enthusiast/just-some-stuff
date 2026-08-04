@@ -1,0 +1,9 @@
+{
+  "name": "Kalos — The Last Warm Water",
+  "short_name": "Kalos",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#07120f",
+  "theme_color": "#07120f",
+  "description": "An interactive literary childhood chronicle."
+}
