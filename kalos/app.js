@@ -2,7 +2,8 @@
   'use strict';
   const root = document.querySelector('#app');
   const parts = [
-    './app.part.00',
+    './app.part.00a',
+    './app.part.00b',
     './app.part.01',
     './app.part.02',
     './app.part.03',
