@@ -6,6 +6,8 @@ This directory hosts the first expanded childhood vertical slice of **Kalos**, a
 
 Open `index.html` through a static host. The public route contains the validated standalone build directly, so it loads as an ordinary web page on mobile and desktop without runtime Base64 chunk assembly or browser-side decompression.
 
+The repository-native hosted route is `https://reluctant-enthusiast.github.io/just-some-stuff/kalos/`. The former `mvlevin.me` Pages binding is retained on the preservation branch but is not active because that domain currently points to an unrelated, missing Vercel deployment.
+
 ## Milestone 0: engine foundation
 
 The build is organized around a data-driven TypeScript architecture compiled into a self-contained static application. The underlying source separates:
