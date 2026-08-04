@@ -1,0 +1,26 @@
+name: Kalos expanded entry
+
+on:
+  push:
+    branches:
+      - kalos/milestones-0-1-v2
+  pull_request:
+    paths:
+      - 'kalos/childhood-v0-2/play.html'
+      - 'kalos/childhood-v0-2/dist/app-expanded.js'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-expanded:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --check kalos/childhood-v0-2/dist/app-expanded.js
+      - run: grep -q './dist/app-expanded.js' kalos/childhood-v0-2/play.html
+      - run: node --test kalos/childhood-v0-2/tests/*.test.mjs
