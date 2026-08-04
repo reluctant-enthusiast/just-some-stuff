@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07120f">
+  <meta name="color-scheme" content="dark">
+  <title>Kalos — The Last Warm Water</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="app" class="app-shell" data-text-scale="normal">
+    <a class="skip-link" href="#story-reader">Skip to story</a>
+    <section id="visual-stage" class="visual-stage" aria-label="Current scene illustration">
+      <div id="scene-art" class="scene-art" aria-hidden="true"></div>
+      <div class="visual-vignette"></div>
+      <header class="scene-heading">
+        <div id="scene-kicker" class="scene-kicker">Age eight · late summer</div>
+        <h1 id="scene-title">Smoke Before Daylight</h1>
+        <p id="scene-subtitle">The Long Roof household wakes beneath its own smoke.</p>
+      </header>
+      <div id="sensory-strip" class="sensory-strip" aria-label="Scene atmosphere"></div>
+    </section>
+    <nav class="context-bar" aria-label="Chronicle context">
+      <div class="context-inner">
+        <button class="context-button" data-panel="people"><span aria-hidden="true">◉</span><span>People</span></button>
+        <button class="context-button" data-panel="memory"><span aria-hidden="true">⌁</span><span>Memory</span></button>
+        <div class="progress-wrap" aria-label="Chapter progress"><div id="progress-label" class="progress-label">1 of 6</div><div class="progress-track"><span id="progress-fill"></span></div></div>
+        <button class="context-button" data-panel="thread"><span aria-hidden="true">✦</span><span>Thread</span></button>
+        <button class="context-button" data-panel="more"><span aria-hidden="true">•••</span><span>More</span></button>
+      </div>
+    </nav>
+    <main class="experience-grid">
+      <article id="story-reader" class="story-card" tabindex="-1">
+        <div id="transition-echo" class="transition-echo" hidden></div>
+        <div id="story-content" class="story-content" aria-live="polite"></div>
+        <div id="choice-region" class="choice-region"></div>
+      </article>
+      <aside class="context-rail" aria-label="Current context">
+        <section class="rail-card"><div class="rail-label">Current pressure</div><p id="current-pressure">The household is waking. Work will soon be assigned.</p></section>
+        <section class="rail-card"><div class="rail-label">Kalos notices</div><ul id="attention-list" class="attention-list"></ul></section>
+        <section class="rail-card timeline-card"><div class="rail-label">Age Eight</div><ol id="scene-timeline" class="scene-timeline"></ol></section>
+      </aside>
+    </main>
+    <div id="runtime-error" class="runtime-error" role="alert" hidden><strong>The chronicle could not render this moment.</strong><p id="runtime-error-text"></p><button id="recover-button" class="secondary-button">Recover from the last save</button></div>
+  </div>
+  <div id="panel-backdrop" class="panel-backdrop" aria-hidden="true">
+    <section id="context-panel" class="context-panel" role="dialog" aria-modal="true" aria-labelledby="panel-title">
+      <header class="panel-header"><div><div class="panel-eyebrow">Chronicle context</div><h2 id="panel-title">People</h2></div><button id="panel-close" class="close-button" aria-label="Close context panel">×</button></header>
+      <div id="panel-content" class="panel-content"></div>
+    </section>
+  </div>
+  <noscript><main class="no-script"><h1>Kalos: The Last Warm Water</h1><p>This chronicle requires JavaScript for branching, memory, and state. It remains fully offline once loaded in a normal browser.</p></main></noscript>
+  <script type="module" src="./dist/app-expanded.js"></script>
+</body>
+</html>
