@@ -4,7 +4,7 @@ This directory hosts the first expanded childhood vertical slice of **Kalos**, a
 
 ## Play
 
-Open `index.html` through a static host. The current deployment packages the validated standalone build into four compressed payload files so the app loads as an ordinary web page on mobile and desktop rather than as an inert attachment preview.
+Open `index.html` through a static host. The public route contains the validated standalone build directly, so it loads as an ordinary web page on mobile and desktop without runtime Base64 chunk assembly or browser-side decompression.
 
 ## Milestone 0: engine foundation
 
@@ -43,3 +43,5 @@ The build was tested across complete authored routes, deterministic free-text ha
 ## Legacy
 
 `legacy-v1.html` preserves the earlier proof-of-concept route.
+
+The pre-fix compressed-payload deployment is preserved in Git on branch `preserve/kalos-atob-pre-fix-20260803`. The historical `payload-*.txt` and `bundle-*.txt` files remain in the repository for traceability but are not loaded by the public route.
